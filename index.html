@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apurba Afiat – Software Engineer</title>
+<meta name="description" content="Apurba Afiat – Software Engineer, AI Enthusiast & QA Engineer building scalable systems and AI-driven solutions." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060608;
+    --bg2: #0c0c10;
+    --bg3: #111118;
+    --surface: #16161e;
+    --surface2: #1e1e28;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #5b8cf7;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --text: #e8e8f0;
+    --text2: #9898b0;
+    --text3: #5a5a72;
+    --glow: rgba(91,140,247,0.15);
+    --glow2: rgba(167,139,250,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Syne', sans-serif; }
+  code, .mono { font-family: 'DM Mono', monospace; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
+
+  /* Selection */
+  ::selection { background: rgba(91,140,247,0.3); color: #fff; }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0px); }
+    50%      { transform: translateY(-8px); }
+  }
+  @keyframes pulseGlow {
+    0%,100% { box-shadow: 0 0 20px rgba(91,140,247,0.2); }
+    50%      { box-shadow: 0 0 40px rgba(91,140,247,0.5); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes orb1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%      { transform: translate(60px,-40px) scale(1.1); }
+    66%      { transform: translate(-40px,50px) scale(0.9); }
+  }
+  @keyframes orb2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%      { transform: translate(-50px,60px) scale(1.05); }
+    66%      { transform: translate(40px,-30px) scale(0.95); }
+  }
+  @keyframes typing {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .animate-fadeUp  { animation: fadeUp 0.7s ease both; }
+  .animate-fadeIn  { animation: fadeIn 0.6s ease both; }
+  .animate-float   { animation: float 4s ease-in-out infinite; }
+  .animate-pulseGlow { animation: pulseGlow 3s ease-in-out infinite; }
+  .animate-orb1    { animation: orb1 12s ease-in-out infinite; }
+  .animate-orb2    { animation: orb2 15s ease-in-out infinite; }
+  .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Gradient text */
+  .grad-text {
+    background: linear-gradient(135deg, #5b8cf7 0%, #a78bfa 50%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .grad-text-blue {
+    background: linear-gradient(135deg, #60a5fa 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card */
+  .glass {
+    background: rgba(22,22,30,0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+  }
+  .glass:hover {
+    border-color: var(--border2);
+  }
+
+  /* Shimmer button */
+  .btn-shimmer {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 50%, var(--accent) 100%);
+    background-size: 200% auto;
+    transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  .btn-shimmer:hover {
+    background-position: right center;
+    box-shadow: 0 0 30px rgba(91,140,247,0.4);
+    transform: translateY(-1px);
+  }
+
+  /* Skill card hover */
+  .skill-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 40px rgba(91,140,247,0.2);
+    border-color: rgba(91,140,247,0.4);
+  }
+
+  /* Project card */
+  .proj-card {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .proj-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border-color: rgba(91,140,247,0.35);
+  }
+
+  /* Noise overlay */
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* Timeline */
+  .timeline-dot {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(91,140,247,0.2), 0 0 12px rgba(91,140,247,0.4);
+    flex-shrink: 0;
+  }
+
+  /* Nav link */
+  .nav-link {
+    position: relative;
+    color: var(--text2);
+    transition: color 0.2s ease;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover { color: var(--text); }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Contact input */
+  .contact-input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+  }
+  .contact-input:focus {
+    border-color: rgba(91,140,247,0.5);
+    box-shadow: 0 0 0 3px rgba(91,140,247,0.1);
+  }
+  .contact-input::placeholder { color: var(--text3); }
+
+  /* Glow line */
+  .glow-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.3;
+  }
+
+  /* Badge */
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: var(--text2);
+    letter-spacing: 0.03em;
+  }
+
+  /* Section heading */
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Scrolled navbar */
+  .nav-scrolled {
+    background: rgba(6,6,8,0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    animation: fadeUp 0.25s ease;
+  }
+
+  /* Custom checkbox for copy */
+  .copy-btn {
+    transition: all 0.2s ease;
+  }
+  .copy-btn:hover {
+    color: var(--accent);
+  }
+
+  /* Particle canvas */
+  #particles { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const NAV_LINKS = [
+  'Home','About','Skills','Experience','Projects','Education','Achievements','Extracurricular','Contact'
+];
+
+const SKILLS = [
+  { cat: 'Programming', color: '#5b8cf7', glow: 'rgba(91,140,247,0.25)',
+    icon: '{ }',
+    items: ['Python','C','Java','C++','PHP'] },
+  { cat: 'Web Dev', color: '#a78bfa', glow: 'rgba(167,139,250,0.25)',
+    icon: '</>',
+    items: ['React','Node.js','Express','HTML','CSS','JavaScript'] },
+  { cat: 'AI / ML', color: '#34d399', glow: 'rgba(52,211,153,0.25)',
+    icon: '⚡',
+    items: ['TensorFlow','PyTorch','Keras','Scikit-learn'] },
+  { cat: 'Databases', color: '#f472b6', glow: 'rgba(244,114,182,0.25)',
+    icon: '◈',
+    items: ['MySQL','MongoDB'] },
+  { cat: 'QA / Testing', color: '#fb923c', glow: 'rgba(251,146,60,0.25)',
+    icon: '✓',
+    items: ['Selenium','JMeter','Postman','Jest'] },
+  { cat: 'Tools', color: '#38bdf8', glow: 'rgba(56,189,248,0.25)',
+    icon: '⚙',
+    items: ['Git','Tableau','Power BI'] },
+];
+
+const EXPERIENCE = [
+  {
+    role: 'Software QA Engineer',
+    company: 'Life Plus Bangladesh Ltd',
+    period: 'Apr 2026 – Present',
+    color: '#5b8cf7',
+    bullets: [
+      'Improved software quality via structured test planning and execution.',
+      'Reduced production defects through manual & automated testing.',
+      'Ensured system performance and regulatory compliance.',
+    ]
+  },
+  {
+    role: 'Software QA Engineer',
+    company: 'Avian™: Bangladesh’s Trusted Tech Brand',
+    period: 'Feb 2026 – Mar 2026',
+    color: '#a78bfa',
+    bullets: [
+      'Performed manual testing for web applications.',
+      'Conducted bug reporting and regression testing cycles.',
+    ]
+  },
+  {
+    role: 'WordPress Developer',
+    company: 'Brainiaxs-IT',
+    period: 'Mar 2025 – May 2025',
+    color: '#34d399',
+    bullets: [
+      'Built custom WordPress sites with tailored themes and plugins.',
+      'Improved client engagement by 30% through UX optimizations.',
+      'Worked with PHP, JavaScript, and MySQL for backend logic.',
+    ]
+  },
+];
+
+const PROJECTS = [
+  {
+    title: 'Bilingual WASH-QA',
+    tag: 'AI / NLP',
+    tagColor: '#34d399',
+    desc: 'Multilingual QA system supporting Bangla & English using Retrieval-Augmented Generation with FAISS vector search and Sentence Transformers for semantic retrieval.',
+    tech: ['RAG','FAISS','Sentence Transformers','Python','NLP'],
+    github: 'https://github.com/ApurbaAfiat/BILINGUAL-WASH-QA-ENHANCING-HEALTH-DATA-ACCESS-WITH-MULTILINGUAL-AI',
+  },
+  {
+    title: 'Policy Document AI Chatbot',
+    tag: 'AI / RAG',
+    tagColor: '#5b8cf7',
+    desc: 'RAG-based chatbot for financial policy PDFs enabling context-aware multi-turn conversations with accurate document citation.',
+    tech: ['RAG','LangChain','Python','Vector DB','PDF'],
+    github: 'https://github.com/ApurbaAfiat/AI-Powered-Chatbot',
+  },
+  {
+    title: 'Ecommerce Web App',
+    tag: 'Full Stack',
+    tagColor: '#a78bfa',
+    desc: 'Full-featured MERN stack ecommerce platform with JWT authentication, product cart, order management, and admin dashboard.',
+    tech: ['MongoDB','Express','React','Node.js','JWT'],
+    github: 'https://github.com/ApurbaAfiat/Ecommerce-project-using-MERN-Stack',
+  },
+  {
+    title: 'Parking Management System',
+    tag: 'Systems',
+    tagColor: '#fb923c',
+    desc: 'Real-time parking slot tracking with automated payment processing and live occupancy visualization.',
+    tech: ['Java','MySQL','REST API','Real-time'],
+    github: 'https://github.com/ApurbaAfiat/Parking_Management_System',
+  },
+  {
+    title: 'Monkeypox Detection',
+    tag: 'Deep Learning',
+    tagColor: '#f472b6',
+    desc: 'CNN-based deep learning model for automated monkeypox disease detection from medical imaging with high classification accuracy.',
+    tech: ['TensorFlow','Keras','CNN','Python','Medical AI'],
+    github: 'https://github.com/ApurbaAfiat/CSE424-Pattern-Recognition--Summer-2024',
+  },
+];
+
+// ─── UTILS ──────────────────────────────────────────────────────────────────
+function useScrollReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  });
+}
+
+// ─── NAVBAR ──────────────────────────────────────────────────────────────────
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  const scroll = (id) => {
+    setOpen(false);
+    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-scrolled' : ''}`}
+      style={{ background: scrolled ? undefined : 'transparent' }}
+    >
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <button onClick={() => scroll('home')} className="flex items-center gap-2 group">
+          <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold btn-shimmer" style={{ fontSize: '0.7rem' }}>
+            AA
+          </span>
+          <span className="font-semibold text-sm tracking-wide" style={{ fontFamily: 'Syne, sans-serif' }}>Apurba</span>
+        </button>
+
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map(l => (
+            <button key={l} onClick={() => scroll(l)} className="nav-link">{l}</button>
+          ))}
+        </div>
+
+        {/* CTA + Hamburger */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => scroll('Contact')}
+            className="hidden md:block btn-shimmer text-white text-xs font-semibold px-4 py-2 rounded-full"
+          >
+            Hire Me
+          </button>
+          <button
+            onClick={() => setOpen(o => !o)}
+            className="md:hidden flex flex-col gap-1 p-2"
+            aria-label="Menu"
+          >
+            <span className={`block w-5 h-0.5 bg-white transition-all duration-200 ${open ? 'rotate-45 translate-y-1.5' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-white transition-all duration-200 ${open ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-white transition-all duration-200 ${open ? '-rotate-45 -translate-y-1.5' : ''}`} />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {open && (
+        <div className="mobile-menu md:hidden glass border-t" style={{ borderColor: 'var(--border)' }}>
+          <div className="px-6 py-4 flex flex-col gap-1">
+            {NAV_LINKS.map(l => (
+              <button
+                key={l}
+                onClick={() => scroll(l)}
+                className="text-left py-3 px-2 text-sm border-b transition-colors hover:text-white"
+                style={{ color: 'var(--text2)', borderColor: 'var(--border)' }}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+// ─── HERO ────────────────────────────────────────────────────────────────────
+function Hero() {
+  return (
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden noise" style={{ paddingTop: '5rem' }}>
+      {/* Orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="animate-orb1 absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20"
+          style={{ background: 'radial-gradient(circle, #5b8cf7, transparent 70%)', filter: 'blur(60px)' }} />
+        <div className="animate-orb2 absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-15"
+          style={{ background: 'radial-gradient(circle, #a78bfa, transparent 70%)', filter: 'blur(60px)' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full opacity-10"
+          style={{ background: 'radial-gradient(circle, #34d399, transparent 70%)', filter: 'blur(80px)' }} />
+        {/* Grid */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }} />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        {/* Tag */}
+        <div className="animate-fadeUp inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 mb-8">
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+          <span className="mono text-xs" style={{ color: 'var(--text2)' }}>Available for opportunities</span>
+        </div>
+
+        {/* Name */}
+        <h1 className="animate-fadeUp delay-100 font-black leading-none mb-4"
+          style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.03em' }}>
+          <span className="block text-white">Apurba</span>
+          <span className="block grad-text">Afiat</span>
+        </h1>
+
+        {/* Title */}
+        <p className="animate-fadeUp delay-200 mono text-sm md:text-base mb-6"
+          style={{ color: 'var(--accent)', letterSpacing: '0.08em' }}>
+          Software Engineer &nbsp;·&nbsp; AI Enthusiast &nbsp;·&nbsp; QA Engineer
+        </p>
+
+        {/* Tagline */}
+        <p className="animate-fadeUp delay-300 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
+          style={{ color: 'var(--text2)' }}>
+          Building scalable systems, AI-driven solutions, and impactful user experiences.
+        </p>
+
+        {/* Buttons */}
+        <div className="animate-fadeUp delay-400 flex flex-wrap items-center justify-center gap-4">
+          <button
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-shimmer text-white font-semibold px-7 py-3 rounded-full text-sm"
+          >
+            View Projects →
+          </button>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="glass px-7 py-3 rounded-full text-sm font-semibold transition-all hover:border-white/20"
+            style={{ color: 'var(--text)', border: '1px solid var(--border)' }}
+          >
+            Contact Me
+          </button>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="animate-fadeUp delay-600 mt-20 flex flex-col items-center gap-2">
+          <div className="w-px h-12 relative overflow-hidden" style={{ background: 'var(--border)' }}>
+            <div className="absolute top-0 w-full animate-bounce"
+              style={{ height: '50%', background: 'linear-gradient(to bottom, var(--accent), transparent)' }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Floating badges */}
+      <div className="hidden lg:block absolute top-1/3 left-8 animate-float delay-200">
+        <div className="glass rounded-xl px-3 py-2 text-xs mono" style={{ color: 'var(--accent)' }}>
+          &lt;AI Engineer /&gt;
+        </div>
+      </div>
+      <div className="hidden lg:block absolute top-1/2 right-8 animate-float">
+        <div className="glass rounded-xl px-3 py-2 text-xs mono" style={{ color: 'var(--accent2)' }}>
+          QA_specialist()
+        </div>
+      </div>
+      <div className="hidden lg:block absolute bottom-1/3 left-12 animate-float delay-400">
+        <div className="glass rounded-xl px-3 py-2 text-xs mono" style={{ color: '#34d399' }}>
+          MERN_stack
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── SECTION WRAPPER ─────────────────────────────────────────────────────────
+function Section({ id, label, title, children, className = '' }) {
+  return (
+    <section id={id} className={`py-24 px-6 ${className}`}>
+      <div className="max-w-6xl mx-auto">
+        <div className="reveal text-center mb-16">
+          <p className="section-tag mb-3">{label}</p>
+          <h2 className="text-3xl md:text-4xl font-bold">{title}</h2>
+          <div className="glow-line w-20 mx-auto mt-4" />
+        </div>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+// ─── ABOUT ───────────────────────────────────────────────────────────────────
+function About() {
+  const interests = [
+    { icon: '⚽', label: 'Football' },
+    { icon: '✈️', label: 'Travelling' },
+    { icon: '🎵', label: 'Music' },
+  ];
+
+  return (
+    <section id="about" className="py-24 px-6" style={{ background: 'var(--bg2)' }}>
+      <div className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <div className="reveal text-center mb-16">
+          <p className="section-tag mb-3">// who i am</p>
+          <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
+          <div className="glow-line w-20 mx-auto mt-4" />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Photo side */}
+          <div className="reveal flex justify-center">
+            <div className="relative">
+              {/* Decorative ring */}
+              <div className="absolute -inset-3 rounded-3xl opacity-30 animate-spin-slow"
+                style={{ background: 'conic-gradient(from 0deg, #5b8cf7, #a78bfa, #34d399, #5b8cf7)', borderRadius: '28px' }} />
+              {/* Outer glow */}
+              <div className="absolute -inset-1 rounded-3xl"
+                style={{ background: 'linear-gradient(135deg, rgba(91,140,247,0.3), rgba(167,139,250,0.2))', filter: 'blur(8px)' }} />
+              {/* Photo placeholder */}
+              <div className="relative w-64 h-72 md:w-72 md:h-80 rounded-3xl overflow-hidden"
+                style={{ border: '1px solid rgba(91,140,247,0.3)', background: 'var(--surface)' }}>
+                {/* Replace the src below with your actual photo URL */}
+                <img
+                  src="My picture.jpg"
+                  alt="Apurba Afiat"
+                  className="w-full h-full object-cover"
+                  onError={e => { e.target.style.display = 'none'; }}
+                />
+                {/* Overlay gradient at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-1/3"
+                  style={{ background: 'linear-gradient(to top, rgba(6,6,8,0.6), transparent)' }} />
+              </div>
+
+              {/* Floating stat badges */}
+              <div className="absolute -right-6 top-8 animate-float">
+                <div className="glass rounded-xl px-3 py-2 text-center shadow-lg"
+                  style={{ border: '1px solid rgba(91,140,247,0.25)' }}>
+                  <p className="font-black text-lg grad-text-blue" style={{ fontFamily: 'Syne' }}>7+</p>
+                  <p className="mono text-xs" style={{ color: 'var(--text3)' }}>Years Coding</p>
+                </div>
+              </div>
+              <div className="absolute -left-6 bottom-12 animate-float delay-300">
+                <div className="glass rounded-xl px-3 py-2 text-center shadow-lg"
+                  style={{ border: '1px solid rgba(52,211,153,0.25)' }}>
+                  <p className="font-black text-lg" style={{ fontFamily: 'Syne', color: '#34d399' }}>15+</p>
+                  <p className="mono text-xs" style={{ color: 'var(--text3)' }}>Projects</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Text side */}
+          <div className="reveal flex flex-col gap-6" style={{ animationDelay: '150ms' }}>
+            <div>
+              <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text2)' }}>
+                Hello! My name is <strong style={{ color: 'var(--text)' }}>Apurba Afiat</strong> — a Computer Science graduate from <strong style={{ color: 'var(--accent)' }}>BRAC University</strong>. I'm currently working as a <strong style={{ color: 'var(--text)' }}>Software Quality Assurance Engineer</strong> at{' '}
+                <strong style={{ color: 'var(--accent)' }}>Life Plus Bangladesh Ltd.</strong>, where I help ship reliable, high-quality software through structured testing and automation.
+              </p>
+              <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text2)' }}>
+                Beyond QA, I'm actively exploring the frontier of <strong style={{ color: 'var(--accent2)' }}>Artificial Intelligence and Cloud Computing</strong> — from building RAG-powered AI agents and fine-tuning large language models, to understanding how distributed cloud infrastructure is reshaping the way we build and scale intelligent systems. It's an exciting time to be in tech, and I'm committed to staying at the edge of it.
+              </p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--text2)' }}>
+                Apart from coding, you'll find me on the football pitch, planning my next trip, or discovering new music.
+              </p>
+            </div>
+
+            {/* Interest chips */}
+            <div>
+              <p className="mono text-xs mb-3" style={{ color: 'var(--text3)' }}>INTERESTS</p>
+              <div className="flex gap-3 flex-wrap">
+                {interests.map(({ icon, label }) => (
+                  <div key={label} className="glass flex items-center gap-2 px-4 py-2 rounded-xl text-sm"
+                    style={{ border: '1px solid var(--border)' }}>
+                    <span>{icon}</span>
+                    <span style={{ color: 'var(--text2)' }}>{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="flex gap-3 flex-wrap pt-2">
+              <button
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="btn-shimmer text-white font-semibold px-6 py-2.5 rounded-full text-sm"
+              >
+                Get in Touch →
+              </button>
+              <a
+                href="https://github.com/apurbaafiat"
+                target="_blank"
+                rel="noreferrer"
+                className="glass px-6 py-2.5 rounded-full text-sm font-semibold transition-all hover:border-white/20"
+                style={{ color: 'var(--text)', border: '1px solid var(--border)' }}
+              >
+                View GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── SKILLS ──────────────────────────────────────────────────────────────────
+function SkillCard({ cat, color, glow, icon, items, delay }) {
+  return (
+    <div
+      className={`reveal skill-card glass rounded-2xl p-6`}
+      style={{ animationDelay: `${delay}ms`, border: `1px solid rgba(255,255,255,0.06)` }}
+    >
+      <div className="flex items-center gap-3 mb-5">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold"
+          style={{ background: `${color}18`, color, boxShadow: `0 0 20px ${glow}`, border: `1px solid ${color}30` }}>
+          {icon}
+        </div>
+        <h3 className="font-bold text-sm" style={{ color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>{cat}</h3>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {items.map(item => (
+          <span key={item}
+            className="badge transition-all hover:border-opacity-40"
+            style={{ '--tw-border-opacity': 1, borderColor: `${color}30`, color, background: `${color}10` }}>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Skills() {
+  return (
+    <Section id="skills" label="// expertise" title="Skills & Technologies">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {SKILLS.map((s, i) => <SkillCard key={s.cat} {...s} delay={i * 80} />)}
+      </div>
+    </Section>
+  );
+}
+
+// ─── EXPERIENCE ───────────────────────────────────────────────────────────────
+function Experience() {
+  return (
+    <Section id="experience" label="// career" title="Experience"
+      className="relative" style={{ background: 'var(--bg2)' }}>
+      <div className="relative max-w-2xl mx-auto">
+        {/* Timeline line */}
+        <div className="absolute left-5 top-0 bottom-0 w-px"
+          style={{ background: 'linear-gradient(to bottom, var(--accent), var(--accent2), transparent)', opacity: 0.3 }} />
+
+        <div className="flex flex-col gap-10">
+          {EXPERIENCE.map((exp, i) => (
+            <div key={i} className="reveal flex gap-6 pl-12 relative" style={{ animationDelay: `${i * 120}ms` }}>
+              <div className="timeline-dot absolute left-[14px] top-1.5"
+                style={{ background: exp.color, boxShadow: `0 0 12px ${exp.color}60` }} />
+
+              <div className="glass rounded-2xl p-6 flex-1" style={{ border: `1px solid ${exp.color}20` }}>
+                <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                  <div>
+                    <h3 className="font-bold text-base" style={{ fontFamily: 'Syne' }}>{exp.role}</h3>
+                    <p className="text-sm font-medium mt-0.5" style={{ color: exp.color }}>{exp.company}</p>
+                  </div>
+                  <span className="badge">{exp.period}</span>
+                </div>
+                <ul className="space-y-1.5">
+                  {exp.bullets.map((b, j) => (
+                    <li key={j} className="flex gap-2 text-sm" style={{ color: 'var(--text2)' }}>
+                      <span style={{ color: exp.color, flexShrink: 0 }}>▸</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ─── PROJECTS ─────────────────────────────────────────────────────────────────
+function ProjectCard({ p, delay }) {
+  return (
+    <div
+      className="reveal proj-card glass rounded-2xl p-6 flex flex-col gap-4 h-full"
+      style={{ animationDelay: `${delay}ms`, border: '1px solid var(--border)' }}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <span className="badge" style={{ color: p.tagColor, borderColor: `${p.tagColor}30`, background: `${p.tagColor}12` }}>
+          {p.tag}
+        </span>
+        <a href={p.github} target="_blank" rel="noreferrer"
+          className="transition-colors hover:text-white"
+          style={{ color: 'var(--text3)' }}
+          title="GitHub">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+
+      <h3 className="font-bold text-base" style={{ fontFamily: 'Syne' }}>{p.title}</h3>
+      <p className="text-sm leading-relaxed flex-1" style={{ color: 'var(--text2)' }}>{p.desc}</p>
+
+      <div className="flex flex-wrap gap-1.5 pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
+        {p.tech.map(t => (
+          <span key={t} className="badge">{t}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Projects() {
+  return (
+    <Section id="projects" label="// work" title="Featured Projects">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {PROJECTS.map((p, i) => <ProjectCard key={p.title} p={p} delay={i * 80} />)}
+      </div>
+    </Section>
+  );
+}
+
+// ─── EDUCATION ────────────────────────────────────────────────────────────────
+function Education() {
+  const items = [
+    {
+      degree: 'BSc in Computer Science',
+      school: 'BRAC University',
+      period: '2021 – 2025',
+      color: '#5b8cf7',
+      detail: 'Focused on Software Engineering, AI/ML, and Systems Design.',
+    },
+    {
+      degree: 'Secondary Education',
+      school: 'Military Collegiate School Khulna',
+      period: 'Completed',
+      color: '#a78bfa',
+      detail: 'Developed foundational academic excellence and discipline.',
+    },
+  ];
+
+  return (
+    <Section id="education" label="// background" title="Education"
+      style={{ background: 'var(--bg2)' }}>
+      <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+        {items.map((item, i) => (
+          <div key={i} className={`reveal glass rounded-2xl p-6`}
+            style={{ animationDelay: `${i * 120}ms`, border: `1px solid ${item.color}20` }}>
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-2 h-2 rounded-full" style={{ background: item.color }} />
+              <span className="mono text-xs" style={{ color: item.color }}>{item.period}</span>
+            </div>
+            <h3 className="font-bold text-lg mt-3" style={{ fontFamily: 'Syne' }}>{item.degree}</h3>
+            <p className="font-semibold text-sm mt-1 mb-3" style={{ color: item.color }}>{item.school}</p>
+            <p className="text-sm" style={{ color: 'var(--text2)' }}>{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+// ─── ACHIEVEMENTS ─────────────────────────────────────────────────────────────
+function Achievements() {
+  return (
+    <Section id="achievements" label="// milestones" title="Achievements">
+      <div className="max-w-2xl mx-auto">
+        <div className="reveal glass rounded-2xl p-8" style={{ border: '1px solid rgba(52,211,153,0.2)' }}>
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
+              style={{ background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.3)' }}>
+              🏆
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap mb-2">
+                <span className="badge" style={{ color: '#34d399', borderColor: '#34d39930', background: '#34d39912' }}>
+                  Top 9 Finalist
+                </span>
+                <span className="badge">AgentX BD Competition 2025</span>
+              </div>
+              <h3 className="font-bold text-xl mb-2" style={{ fontFamily: 'Syne' }}>
+                AgentX BD – AI Agent Competition
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text2)' }}>
+                Reached the Top 9 Finalists at AgentX BD 2025, a national AI agent competition.
+                Built <strong style={{ color: 'var(--text)' }}>"Aparajita"</strong> — an AI agent designed to support women's safety, empowerment, and access to resources in Bangladesh.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ─── EXTRACURRICULAR ──────────────────────────────────────────────────────────
+function Extracurricular() {
+  const items = [
+    {
+      role: 'Vice President',
+      org: 'BRAC University Community Service Club',
+      icon: '🌐',
+      color: '#5b8cf7',
+      desc: 'Led community service initiatives and coordinated volunteer programs across campus.',
+    },
+    {
+      role: 'Campus Ambassador',
+      org: 'LEAD Academy',
+      icon: '🎯',
+      color: '#a78bfa',
+      desc: 'Represented LEAD Academy on campus, promoting leadership development and skill-building programs.',
+    },
+  ];
+
+  return (
+    <Section id="extracurricular" label="// beyond code" title="Extracurricular"
+      style={{ background: 'var(--bg2)' }}>
+      <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+        {items.map((item, i) => (
+          <div key={i} className={`reveal glass rounded-2xl p-6`}
+            style={{ animationDelay: `${i * 120}ms`, border: `1px solid ${item.color}20` }}>
+            <div className="text-3xl mb-4">{item.icon}</div>
+            <h3 className="font-bold text-base" style={{ fontFamily: 'Syne', color: item.color }}>{item.role}</h3>
+            <p className="font-semibold text-sm mt-0.5 mb-3">{item.org}</p>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text2)' }}>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+// ─── CONTACT ──────────────────────────────────────────────────────────────────
+function Contact() {
+  const [copied, setCopied] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('apurba.afiat@gmail.com').then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSent(true);
+    setForm({ name: '', email: '', message: '' });
+    setTimeout(() => setSent(false), 4000);
+  };
+
+  return (
+    <Section id="contact" label="// get in touch" title="Contact">
+      <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+        {/* Left */}
+        <div className="reveal flex flex-col gap-6">
+          <p className="leading-relaxed" style={{ color: 'var(--text2)' }}>
+            Open to new opportunities, collaborations, and interesting projects.
+            Feel free to reach out — I'll get back to you promptly.
+          </p>
+
+          {/* Email */}
+          <div className="glass rounded-xl p-4 flex items-center justify-between gap-3"
+            style={{ border: '1px solid var(--border)' }}>
+            <div>
+              <p className="mono text-xs mb-1" style={{ color: 'var(--text3)' }}>EMAIL</p>
+              <p className="text-sm font-medium">apurba.afiat@gmail.com</p>
+            </div>
+            <button
+              onClick={copyEmail}
+              className="copy-btn glass rounded-lg px-3 py-1.5 text-xs mono transition-all"
+              style={{ color: copied ? '#34d399' : 'var(--text2)', border: '1px solid var(--border)' }}
+            >
+              {copied ? '✓ Copied' : 'Copy'}
+            </button>
+          </div>
+
+          {/* Socials */}
+          <div className="flex gap-3">
+            {[
+              { label: 'GitHub', href: 'https://github.com/apurbaafiat', color: '#fff',
+                icon: <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              },
+              { label: 'LinkedIn', href: 'https://linkedin.com/in/apurbaafiat', color: '#0a66c2',
+                icon: <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              }
+            ].map(s => (
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
+                className="glass flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:border-white/20"
+                style={{ border: '1px solid var(--border)', color: 'var(--text2)' }}>
+                {s.icon}
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="reveal flex flex-col gap-4" style={{ animationDelay: '150ms' }}>
+          <div>
+            <label className="block text-xs mono mb-1.5" style={{ color: 'var(--text3)' }}>NAME</label>
+            <input
+              className="contact-input"
+              placeholder="Your name"
+              value={form.name}
+              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-xs mono mb-1.5" style={{ color: 'var(--text3)' }}>EMAIL</label>
+            <input
+              type="email"
+              className="contact-input"
+              placeholder="your@email.com"
+              value={form.email}
+              onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-xs mono mb-1.5" style={{ color: 'var(--text3)' }}>MESSAGE</label>
+            <textarea
+              className="contact-input resize-none"
+              rows={5}
+              placeholder="Tell me about your project..."
+              value={form.message}
+              onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+              required
+            />
+          </div>
+          <button type="submit"
+            className="btn-shimmer text-white font-semibold py-3 rounded-xl text-sm mt-1">
+            {sent ? '✓ Message Sent!' : 'Send Message →'}
+          </button>
+        </form>
+      </div>
+    </Section>
+  );
+}
+
+// ─── FOOTER ───────────────────────────────────────────────────────────────────
+function Footer() {
+  return (
+    <footer className="py-8 px-6 border-t text-center" style={{ borderColor: 'var(--border)' }}>
+      <p className="mono text-xs" style={{ color: 'var(--text3)' }}>
+        © 2025 Apurba Afiat &nbsp;·&nbsp; Crafted with precision
+      </p>
+    </footer>
+  );
+}
+
+// ─── APP ──────────────────────────────────────────────────────────────────────
+function App() {
+  useScrollReveal();
+  return (
+    <div>
+      <Navbar />
+      <Hero />
+      <About />
+      <Skills />
+      <Experience />
+      <Projects />
+      <Education />
+      <Achievements />
+      <Extracurricular />
+      <Contact />
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
